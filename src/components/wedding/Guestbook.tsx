@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 // ⚠️ 본인의 구글 앱스 스크립트 배포 URL로 반드시 교체하세요.
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz5UqKbNXU-MC5gv5ZgRCh4LDGpIld0-avSrji2fG5DR3ztEeacMO0k86M1zILm-1njMA/exec";
+const APPS_SCRIPT_URL = “https://script.google.com/macros/s/AKfycbz5UqKbNXU-MC5gv5ZgRCh4LDGpIld0-avSrji2fG5DR3ztEeacMO0k86M1zILm-1njMA/exec”;
 
 type Msg = { id: string; author: string; content: string; color_index: number; created_at: string };
 
