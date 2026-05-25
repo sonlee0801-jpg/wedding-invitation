@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 
 // ✅ 여기에 Apps Script 웹앱 URL을 붙여넣으세요
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5UqKbNXU-MC5gv5ZgRCh4LDGpIld0-avSrji2fG5DR3ztEeacMO0k86M1zILm-1njMA/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz5UqKbNXU-MC5gv5ZgRCh4LDGpIld0-avSrji2fG5DR3ztEeacMO0k86M1zILm-1njMA/exec";
 
 function Toggle({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
   return (
