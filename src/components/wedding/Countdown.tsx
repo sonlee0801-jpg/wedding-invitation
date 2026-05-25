@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // Wedding date placeholder — update as needed
-export const WEDDING_DATE = new Date("2026-05-30T13:00:00+09:00");
+export const WEDDING_DATE = new Date("2026-11-22T11:50:00+09:00");
 
 function diff(target: Date) {
   const now = new Date();
