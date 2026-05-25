@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEjpjjPBHyW7SqChFVyWZrFYtLZSHoKGH-1L91ydL0EV1LO0EE1F2lgrOJnynUhWy0sQ/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDguS_c-ZyiJL0emnr1euOMAL2k0lFp8_gcOwRx8MpbCn5R0194e7SrUEKy18R0_X6/exec";
 
 function Toggle({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
   return (
