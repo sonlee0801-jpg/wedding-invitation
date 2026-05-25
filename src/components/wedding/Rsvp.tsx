@@ -7,6 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby4AfGFlPcj0qNPnzH9ZbGhwIIFU486v0ph2LieXmZqfy-2dXDsymWbJuAwIk3A-r9zQw/exec";
+
 function Toggle({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
   return (
     <div className="flex gap-2">
