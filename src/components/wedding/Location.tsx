@@ -1,5 +1,6 @@
 import { MapPin, Navigation, Car, Train } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import mapImg from "@/assets/map.jpg";
 
 const ADDRESS = "경기도 안산시 단원구 광덕1로 171, AW웨딩컨벤션";
 
@@ -12,7 +13,7 @@ export function Location() {
       <div className="overflow-hidden rounded-2xl border border-border">
         <img
           src={mapImg}
-          alt="AW컨벤션 오시는 길 약도"
+          alt="AW웨딩컨벤션 오시는 길 약도"
           className="block w-full"
         />
       </div>
