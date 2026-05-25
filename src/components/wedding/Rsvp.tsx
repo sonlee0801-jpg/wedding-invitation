@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDguS_c-ZyiJL0emnr1euOMAL2k0lFp8_gcOwRx8MpbCn5R0194e7SrUEKy18R0_X6/exec";
+// ✅ 여기에 Apps Script 웹앱 URL을 붙여넣으세요
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAIZ4jj6pZBbuzV5uCechNHOUbdEfGahNnHEL55ZPnfkW1-7dyXq447fLTaQQb1Nts7A/exec";
 
 function Toggle({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
   return (
@@ -54,19 +54,29 @@ export function Rsvp() {
       return;
     }
     setBusy(true);
-    const { error } = await supabase.from("rsvp_submissions").insert({
-      side,
-      name: name.trim(),
-      attendance,
-      guest_count: count ? parseInt(count, 10) : null,
-      companion: companion.trim() || null,
-      meal_preference: meal,
-    });
-    setBusy(false);
-    if (error) { toast.error("전송 실패"); return; }
-    if (hideToday) localStorage.setItem("rsvp_hide", new Date().toDateString());
-    toast.success("참석 의사가 전달되었습니다");
-    setOpen(false);
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" }, // Apps Script CORS 우회
+        body: JSON.stringify({
+          side,
+          name: name.trim(),
+          attendance,
+          guest_count: count ? parseInt(count, 10) : null,
+          companion: companion.trim() || null,
+          meal_preference: meal,
+        }),
+      });
+      const json = await res.json();
+      if (json.result !== "success") throw new Error(json.message);
+      if (hideToday) localStorage.setItem("rsvp_hide", new Date().toDateString());
+      toast.success("참석 의사가 전달되었습니다");
+      setOpen(false);
+    } catch {
+      toast.error("전송 실패. 다시 시도해주세요");
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
