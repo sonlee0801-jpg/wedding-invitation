@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { DrawerTitle } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
+import { submitToAppsScript } from "@/lib/submit-form";
 
-// ✅ 여기에 Apps Script 웹앱 URL을 붙여넣으세요
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5UqKbNXU-MC5gv5ZgRCh4LDGpIld0-avSrji2fG5DR3ztEeacMO0k86M1zILm-1njMA/exec";
 
 function Toggle({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
@@ -55,22 +56,17 @@ export function Rsvp() {
     }
     setBusy(true);
     try {
-      const res = await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" }, // Apps Script CORS 우회
-        body: JSON.stringify({
-          side,
-          name: name.trim(),
-          attendance,
-          guest_count: count ? parseInt(count, 10) : null,
-          companion: companion.trim() || null,
-          meal_preference: meal,
-        }),
+      await submitToAppsScript(APPS_SCRIPT_URL, {
+        type: "rsvp",
+        side,
+        name: name.trim(),
+        attendance,
+        guest_count: count ? parseInt(count, 10) : null,
+        companion: companion.trim() || null,
+        meal_preference: meal,
       });
-      const json = await res.json();
-      if (json.result !== "success") throw new Error(json.message);
       if (hideToday) localStorage.setItem("rsvp_hide", new Date().toDateString());
-      toast.success("참석 의사가 전달되었습니다");
+      toast.success("참석 의사가 전달되었습니다 💌");
       setOpen(false);
     } catch {
       toast.error("전송 실패. 다시 시도해주세요");
@@ -88,7 +84,8 @@ export function Rsvp() {
             참석 의사 전달하기
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="mx-auto max-w-[480px] bg-background dot-pattern border-border">
+        <DrawerContent className="mx-auto max-w-[480px] bg-background border-border">
+          <DrawerTitle className="sr-only">참석 의사 전달</DrawerTitle>
           <div className="px-6 pb-8 pt-4 space-y-4 text-left">
             <h3 className="text-center font-serif-ko text-lg text-foreground">참석 의사 전달</h3>
             <div>
@@ -106,11 +103,11 @@ export function Rsvp() {
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label className="text-xs text-foreground/70">참석인원</Label>
-                <Input value={count} onChange={(e) => setCount(e.target.value)} placeholder="본인 포함 총 참석인원" inputMode="numeric" className="mt-1.5 bg-secondary/40 border-border text-foreground" />
+                <Input value={count} onChange={(e) => setCount(e.target.value)} placeholder="총 인원" inputMode="numeric" className="mt-1.5 bg-secondary/40 border-border text-foreground" />
               </div>
               <div>
                 <Label className="text-xs text-foreground/70">동행인</Label>
-                <Input value={companion} onChange={(e) => setCompanion(e.target.value)} placeholder="함께 오시는 분 성함" className="mt-1.5 bg-secondary/40 border-border text-foreground" />
+                <Input value={companion} onChange={(e) => setCompanion(e.target.value)} placeholder="함께 오시는 분" className="mt-1.5 bg-secondary/40 border-border text-foreground" />
               </div>
             </div>
             <div>
@@ -120,7 +117,7 @@ export function Rsvp() {
             <Button onClick={submit} disabled={busy} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
               {busy ? "전송중..." : "참석 의사 전달하기"}
             </Button>
-            <label className="flex items-center justify-center gap-2 text-xs text-foreground/70">
+            <label className="flex items-center justify-center gap-2 text-xs text-foreground/70 cursor-pointer">
               <Checkbox checked={hideToday} onCheckedChange={(v) => setHideToday(Boolean(v))} />
               오늘 하루 보지 않기
             </label>
