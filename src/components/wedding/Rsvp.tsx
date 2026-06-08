@@ -84,7 +84,10 @@ export function Rsvp() {
             참석 의사 전달하기
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="mx-auto max-w-[480px] bg-background border-border">
+        <DrawerContent
+          onCloseAutoFocus={(e) => e.preventDefault()}
+          className="mx-auto max-w-[480px] bg-background dot-pattern border-border"
+        >
           <DrawerTitle className="sr-only">참석 의사 전달</DrawerTitle>
           <div className="px-6 pb-8 pt-4 space-y-4 text-left">
             <h3 className="text-center font-serif-ko text-lg text-foreground">참석 의사 전달</h3>
