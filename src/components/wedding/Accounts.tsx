@@ -6,15 +6,14 @@ import { toast } from "sonner";
 type Acct = { relation: string; name: string; bank: string; number: string };
 
 const groom: Acct[] = [
-  { relation: "신랑", name: "손정원", bank: "국민은행", number: "000-00-0000-000" },
-  { relation: "신랑 아버지", name: "손찬", bank: "국민은행", number: "000-00-0000-000" },
-  { relation: "신랑 어머니", name: "홍임숙", bank: "국민은행", number: "000-00-0000-000" },
+  { relation: "신랑", name: "손정원", bank: "기업은행", number: "345-136974-01-014" },
+  { relation: "신랑 아버지", name: "손찬", bank: "기업은행", number: "450-015321-01-019" },
+  { relation: "신랑 어머니", name: "홍임숙", bank: "국민은행", number: "263101-04-071381" },
 ];
 const bride: Acct[] = [
-  { relation: "신부", name: "이다빈", bank: "신한은행", number: "000-000-000000" },
-  { relation: "신부 아버지", name: "이창일", bank: "신한은행", number: "000-000-000000" },
-  { relation: "신부 어머니", name: "박정규", bank: "신한은행", number: "000-000-000000" },
-];
+  { relation: "신부", name: "이다빈", bank: "신한은행", number: "110-432-404022" },
+  { relation: "신부 아버지", name: "이창일", bank: "국민은행", number: "227-24-0226-648" },
+]
 
 function Row({ a }: { a: Acct }) {
   const [done, setDone] = useState(false);
