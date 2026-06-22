@@ -6,14 +6,14 @@ import { Button } from "@/components/ui/button";
 type Person = { relation: string; name: string; phone: string };
 
 const groom: Person[] = [
-  { relation: "신랑", name: "손정원", phone: "01000000000" },
-  { relation: "아버지", name: "손찬", phone: "01000000000" },
-  { relation: "어머니", name: "홍임숙", phone: "01000000000" },
+  { relation: "신랑", name: "손정원", phone: "01085155991" },
+  { relation: "아버지", name: "손찬", phone: "01047265991" },
+  { relation: "어머니", name: "홍임숙", phone: "01092708991" },
 ];
 const bride: Person[] = [
-  { relation: "신부", name: "이다빈", phone: "01000000000" },
-  { relation: "아버지", name: "이창일", phone: "01000000000" },
-  { relation: "어머니", name: "박정규", phone: "01000000000" },
+  { relation: "신부", name: "이다빈", phone: "01072029595" },
+  { relation: "아버지", name: "이창일", phone: "01034572898" },
+  { relation: "어머니", name: "박정규", phone: "01028980176" },
 ];
 
 function Column({ title, people }: { title: string; people: Person[] }) {
