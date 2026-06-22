@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
+// vite.config.ts
 export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
-  base: '/wedding-invitation/',
+  base: './',
 })
