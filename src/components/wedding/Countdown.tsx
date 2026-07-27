@@ -59,7 +59,7 @@ export function Countdown() {
     const id = setInterval(() => setT(diff(WEDDING_DATE)), 1000);
     return () => clearInterval(id);
   }, []);
-  const dateStr = `${WEDDING_DATE.getFullYear()}년 ${WEDDING_DATE.getMonth() + 1}월 ${WEDDING_DATE.getDate()}일 ${WEDDING_DATE.getHours()}시`;
+  const dateStr = `${WEDDING_DATE.getFullYear()}년 ${WEDDING_DATE.getMonth() + 1}월 ${WEDDING_DATE.getDate()}일 ${WEDDING_DATE.getHours()}시 ${WEDDING_DATE.getMinutes()}분`;
   return (
     <section className="px-6 py-8 text-center">
       <h3 className="mb-2 font-serif-ko text-lg text-foreground">결혼합니다</h3>

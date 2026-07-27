@@ -11,7 +11,7 @@ const groom: Acct[] = [
   { relation: "신랑 어머니", name: "홍임숙", bank: "국민은행", number: "263101-04-071381" },
 ];
 const bride: Acct[] = [
-  { relation: "신부", name: "이다빈", bank: "신한은행", number: "110-432-404022" },
+  { relation: "신부", name: "이다빈", bank: "카카오뱅크", number: "3333-04-0074356" },
   { relation: "신부 아버지", name: "이창일", bank: "국민은행", number: "227-24-0226-648" },
 ]
 
